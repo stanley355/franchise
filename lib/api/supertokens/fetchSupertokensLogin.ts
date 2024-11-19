@@ -35,7 +35,7 @@ export const fetchSupertokensLogin= async (
     email: string,
     password: string,
 ): Promise<TResponse> => {
-    const url = `${SUPERTOKENS_API_URL}/recipe/login/`;
+    const url = `${SUPERTOKENS_API_URL}/recipe/signin/`;
 
     try {
         const response = await fetch(url, {
