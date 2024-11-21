@@ -1,12 +1,15 @@
 'use client'
+import {toast} from "react-toastify";
+import {LuLoader2} from "react-icons/lu";
+import {useShallow} from "zustand/react/shallow";
+import {useLoginStore} from "@/app/accounts/login/_stores/useLoginStore";
+
 import {Label} from "@/components/ui/label";
 import {Input} from "@/components/ui/input";
 import {Button} from "@/components/ui/button";
-import {useLoginStore} from "@/app/accounts/login/_stores/useLoginStore";
-import {useShallow} from "zustand/react/shallow";
-import {LuLoader2} from "react-icons/lu";
-import {toast} from "react-toastify";
+
 import {fetchSupertokensLogin} from "@/lib/api/supertokens/fetchSupertokensLogin";
+import {fetchSupertokensSession} from "@/lib/api/supertokens/fetchSupertokensSession";
 
 const LoginForm = () => {
     const { isLoading, updateStore } = useLoginStore(
@@ -23,9 +26,13 @@ const LoginForm = () => {
       updateStore("isLoading", true);
       try {
           const supertokensLogin = await fetchSupertokensLogin(email, password);
-          console.log(supertokensLogin);
           if (supertokensLogin.status === "OK") {
-
+            const session = await fetchSupertokensSession(supertokensLogin.user.id, supertokensLogin.user, supertokensLogin.user);
+            if (session) {
+                window.location.href = "/";
+            } else {
+                toast("Something went wrong, please try again later.");
+            }
           } else {
               toast(supertokensLogin.status)
           }
