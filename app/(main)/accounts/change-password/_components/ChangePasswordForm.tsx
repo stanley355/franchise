@@ -12,6 +12,7 @@ import {fetchChangePassword} from "@/lib/api/nest/fetchChangePassword";
 import {toast} from "react-toastify";
 import {useLoginStore} from "@/app/accounts/login/_stores/useLoginStore";
 import {checkApiSessionExpired} from "@/lib/checkApiSessionExpired";
+import {removeAccessAndRefreshToken} from "@/lib/removeAccessAndRefreshToken";
 
 const ChangePasswordForm = () => {
     const {updateLoginStore} = useLoginStore(
@@ -33,13 +34,15 @@ const ChangePasswordForm = () => {
         try {
             const changePassword = await fetchChangePassword(oldPassword, newPassword);
             if (changePassword?.status === "OK") {
-                toast(changePassword.status)
+                await removeAccessAndRefreshToken();
+                updateStore("openDialogue", true)
             } else if (checkApiSessionExpired(changePassword)) {
                 updateLoginStore("openSessionExpiredDialogue", true)
             } else {
                 toast(changePassword.message)
             }
         } catch (e: any) {
+            console.log(e)
             console.error(e.message);
             toast("Something went wrong, please try again later.");
         } finally {

@@ -12,19 +12,22 @@ export async function middleware(request: NextRequest) {
     }
 
     const response = NextResponse.next()
-    const jwtPayload = decode(accessToken) as JwtPayload;
-    if (new Date().getTime() > Number(jwtPayload.exp) * 1000) {
-        try {
-            const newSession = await fetchSupertokensSessionRefresh()
-            if (newSession?.accessToken?.token && newSession?.refreshToken?.token) {
-                response.cookies.set("accessToken", newSession?.accessToken?.token)
-                response.cookies.set("refreshToken", newSession?.refreshToken?.token)
-            } else {
+    if (!isLoginPage) {
+        const jwtPayload = decode(accessToken) as JwtPayload;
+        if (new Date().getTime() > Number(jwtPayload.exp) * 1000) {
+            try {
+                const newSession = await fetchSupertokensSessionRefresh()
+                if (newSession?.accessToken?.token && newSession?.refreshToken?.token) {
+                    response.cookies.set("accessToken", newSession?.accessToken?.token)
+                    response.cookies.set("refreshToken", newSession?.refreshToken?.token)
+                    return response
+                } else {
+                    return loginRedirect
+                }
+            } catch (error: any) {
+                console.error(error.message);
                 return loginRedirect
             }
-        } catch (error: any) {
-            console.error(error.message);
-            return loginRedirect
         }
     }
 
