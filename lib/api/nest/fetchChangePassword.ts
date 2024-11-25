@@ -1,7 +1,7 @@
 'use server'
 import {cookies} from "next/headers";
 import {decode, JwtPayload} from "jsonwebtoken";
-import {API_URL } from "@/lib/api/supertokens/constant";
+import {API_URL } from "@/lib/api/constant";
 
 type TResponse = {
     error?: string,

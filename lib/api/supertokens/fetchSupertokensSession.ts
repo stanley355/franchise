@@ -1,6 +1,6 @@
 'use server'
 import {cookies} from "next/headers";
-import {SUPERTOKENS_API_KEY, SUPERTOKENS_API_URL} from "@/lib/api/supertokens/constant";
+import {SUPERTOKENS_API_KEY, SUPERTOKENS_API_URL} from "@/lib/api/constant";
 import {TSessionToken} from "@/lib/api/supertokens/types/TSessionToken";
 import {TSession} from "@/lib/api/supertokens/types/TSession";
 

@@ -1,7 +1,7 @@
 
 
 "use server";
-import {SUPERTOKENS_API_KEY, SUPERTOKENS_API_URL} from "@/lib/api/supertokens/constant";
+import {SUPERTOKENS_API_KEY, SUPERTOKENS_API_URL} from "@/lib/api/constant";
 
 type TResponse  = {
     status: string
