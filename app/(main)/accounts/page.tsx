@@ -10,9 +10,9 @@ const AccountsPage = async () => {
 
    return (
        <div className="p-4">
-           <h1 className="text-lg font-bold mb-4">My Account</h1>
+           <h1 className="text-lg font-bold mb-4">ACCOUNT</h1>
 
-           <div>Email:</div>
+           <div className="text-xs">Email:</div>
            <div className="font-semibold mb-4">{jwtPayload.emails[0]}</div>
 
            <div className="flex flex-col gap-4 w-fit">

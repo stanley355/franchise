@@ -45,7 +45,7 @@ export const fetchSupertokensSession = async (
         cookies().set('accessToken', session.accessToken.token);
         cookies().set('refreshToken', session.refreshToken.token);
         return session
-    } catch (err: any) {
-        throw new Error(err);
+    } catch (error) {
+        throw error;
     }
 }

@@ -7,8 +7,8 @@ import {HEADER_MENU} from "@/app/(main)/_header/constant";
 const Header = () => {
     return (
         <div className="flex items-center justify-between border rounded-md">
-            <Link href="/" className={cn(buttonVariants({variant: "ghost", size: "icon"}), "font-bold")}>
-                TSH
+            <Link href="/" className={cn(buttonVariants({variant: "ghost"}), "font-bold")}>
+                DEMO
             </Link>
             <HeaderDialogue/>
             <div>

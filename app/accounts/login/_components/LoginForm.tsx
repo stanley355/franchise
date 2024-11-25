@@ -26,9 +26,11 @@ const LoginForm = () => {
       updateStore("isLoading", true);
       try {
           const supertokensLogin = await fetchSupertokensLogin(email, password);
+          console.log(supertokensLogin);
           if (supertokensLogin.status === "OK") {
             const session = await fetchSupertokensSession(supertokensLogin.user.id, supertokensLogin.user, supertokensLogin.user);
             if (session) {
+                toast("Login successful, redirecting...");
                 window.location.href = "/";
             } else {
                 toast("Something went wrong, please try again later.");
@@ -36,9 +38,8 @@ const LoginForm = () => {
           } else {
               toast(supertokensLogin.status)
           }
-
-      } catch (e) {
-          console.error(e);
+      } catch (e:any) {
+          console.error(e.message);
           toast("Something went wrong, please try again later.");
       } finally {
           updateStore("isLoading", false);
@@ -54,7 +55,7 @@ const LoginForm = () => {
            <Input type="email" placeholder="Email" name="email" required className="mb-4" />
            <Label htmlFor="password">Password</Label>
            <Input type="password" placeholder="Password" name="password" required className="mb-4" />
-           <Button type="submit" className="w-full">
+           <Button type="submit" className="w-full" disabled={isLoading}>
                {isLoading ? <LuLoader2 className="animate-spin" /> : "Login"}
            </Button>
        </form>

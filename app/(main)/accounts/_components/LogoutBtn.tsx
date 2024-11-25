@@ -7,17 +7,22 @@ import {fetchSupertokensSessionRemove} from "@/lib/api/supertokens/fetchSupertok
 const LogoutBtn = () => {
 
    const onClick = async () => {
-       const sessionRemove = await fetchSupertokensSessionRemove();
+       try {
+           const sessionRemove = await fetchSupertokensSessionRemove();
 
-       if (sessionRemove.status === "OK") {
-           window.location.href = "/accounts/login";
-       } else {
+           if (sessionRemove.status === "OK") {
+               window.location.href = "/accounts/login";
+           } else {
+               toast("Something went wrong, please try again later.");
+           }
+       } catch (e:any) {
+           console.error(e.message);
            toast("Something went wrong, please try again later.");
        }
    }
 
     return (
-        <Button className="gap-2" variant="outline" onClick={onClick}>
+        <Button className="gap-2 w-fit" variant="outline" onClick={onClick}>
             <LuLogOut />
             Log out
         </Button>

@@ -1,7 +1,6 @@
 
 
 "use server";
-import { cookies } from "next/headers";
 import {SUPERTOKENS_API_KEY, SUPERTOKENS_API_URL} from "@/lib/api/supertokens/constant";
 
 type TResponse  = {
@@ -48,7 +47,7 @@ export const fetchSupertokensLogin= async (
         });
 
         return await response.json();
-    } catch (err:any) {
-        throw new Error(err);
+    } catch (error) {
+        throw error
     }
 };

@@ -30,7 +30,7 @@ export const fetchSupertokensSessionRemove= async (): Promise<TResponse> => {
             cookies().delete('refreshToken');
         }
         return session
-    } catch (err: any) {
-        throw new Error(err);
+    } catch (error) {
+        throw error;
     }
 }
