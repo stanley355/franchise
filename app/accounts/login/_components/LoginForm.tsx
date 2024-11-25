@@ -26,7 +26,6 @@ const LoginForm = () => {
       updateStore("isLoading", true);
       try {
           const supertokensLogin = await fetchSupertokensLogin(email, password);
-          console.log(supertokensLogin);
           if (supertokensLogin.status === "OK") {
             const session = await fetchSupertokensSession(supertokensLogin.user.id, supertokensLogin.user, supertokensLogin.user);
             if (session) {
