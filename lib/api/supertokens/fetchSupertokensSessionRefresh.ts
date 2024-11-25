@@ -11,12 +11,9 @@ type TResponse = {
     status: string
 }
 
-export const fetchSupertokensSession = async (
-    userId: string,
-    userDataInJWT: Record<string, any>,
-    userDataInDatabase: Record<string, any>): Promise<TResponse> => {
-
-    const url = `${SUPERTOKENS_API_URL}/recipe/session/`;
+export const fetchSupertokensSessionRefresh = async (): Promise<TResponse> => {
+    const refreshToken = cookies().get("refreshToken")?.value as string;
+    const url = `${SUPERTOKENS_API_URL}/recipe/session/refresh`;
 
     try {
         const response = await fetch(url, {
@@ -25,13 +22,10 @@ export const fetchSupertokensSession = async (
                 "Content-Type": "application/json",
                 Authorization: SUPERTOKENS_API_KEY,
             },
-            body: JSON.stringify({userId, enableAntiCsrf: false, userDataInJWT, userDataInDatabase}),
+            body: JSON.stringify({ refreshToken, enableAntiCsrf: false, useDynamicSigningKey: true}),
         });
 
-        const session: TResponse = await response.json();
-        cookies().set('accessToken', session.accessToken.token);
-        cookies().set('refreshToken', session.refreshToken.token);
-        return session
+        return  await response.json();
     } catch (error) {
         throw error;
     }
