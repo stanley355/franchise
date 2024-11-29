@@ -11,7 +11,7 @@ const Header = () => {
                 DEMO
             </Link>
             <HeaderDialogue/>
-            <div>
+            <div className="flex items-center gap-2">
                 {HEADER_MENU.map((menu) => <Link href={menu.href} key={`desktop_menu_${menu.href}`}
                                                  className={cn(buttonVariants({variant: "ghost"}), "w-full justify-start")}>
                     {menu.icon}
