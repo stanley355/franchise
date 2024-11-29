@@ -1,19 +1,23 @@
 import {findAllInventories} from "@/lib/api/nest/inventories/findAllInventories";
 import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow} from "@/components/ui/table";
 import {LuBoxes} from "react-icons/lu";
-import {formatDateToIndonesian } from '../../../../lib/formatDateToIndonesian';
+import {formatDateToIndonesian } from '@/lib/formatDateToIndonesian';
 
-const InventoriesTable = async () => {
-    const inventories = await findAllInventories()
+type TInventoriesTableProps = {
+   name?: string | undefined;
+}
+
+const InventoriesTable = async ({name}: TInventoriesTableProps) => {
+    const inventories = await findAllInventories(name)
 
     if (!inventories) {
         return <>Error</>
     }
 
     if (inventories.length === 0) {
-        return <div className="w-full h-96 flex items-center justify-center flex-col">
+        return <div className="w-full h-96 flex items-center justify-center flex-col gap-4">
             <LuBoxes className="text-5xl" />
-            <div>Inventory is empty</div>
+            <div>{name ? `No inventory with "${name}" name found`: "Inventory is empty"}</div>
         </div>
     }
 
