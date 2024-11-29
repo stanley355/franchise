@@ -2,6 +2,7 @@ import {findAllInventories} from "@/lib/api/nest/inventories/findAllInventories"
 import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow} from "@/components/ui/table";
 import {LuBoxes} from "react-icons/lu";
 import {formatDateToIndonesian } from '@/lib/formatDateToIndonesian';
+import DeleteInventoriesDialog from "@/app/(main)/inventories/_components/DeleteInventoriesDialog";
 
 type TInventoriesTableProps = {
    name?: string | undefined;
@@ -33,6 +34,8 @@ const InventoriesTable = async ({name}: TInventoriesTableProps) => {
                         <TableHead>Size</TableHead>
                         <TableHead>Color</TableHead>
                         <TableHead>Amount</TableHead>
+                        <TableHead>Unit</TableHead>
+                        <TableHead>Action</TableHead>
                     </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -44,7 +47,11 @@ const InventoriesTable = async ({name}: TInventoriesTableProps) => {
                             <TableCell>{inventory.name}</TableCell>
                             <TableCell>{inventory.size}</TableCell>
                             <TableCell>{inventory.color}</TableCell>
-                            <TableCell>{inventory.amount} {inventory.unit}</TableCell>
+                            <TableCell>{inventory.amount}</TableCell>
+                            <TableCell>{inventory.unit}</TableCell>
+                            <TableCell>
+                                <DeleteInventoriesDialog id={inventory.id} name={inventory.name} />
+                            </TableCell>
                         </TableRow>
                     )}
                 </TableBody>

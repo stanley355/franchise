@@ -42,7 +42,6 @@ const ChangePasswordForm = () => {
                 toast(changePassword.message)
             }
         } catch (e: any) {
-            console.log(e)
             console.error(e.message);
             toast("Something went wrong, please try again later.");
         } finally {

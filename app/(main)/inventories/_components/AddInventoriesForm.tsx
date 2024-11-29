@@ -35,7 +35,6 @@ const AddInventoriesForm = () => {
             }
 
             const inventories = await createNewInventories(createData);
-            console.log(inventories)
             if (inventories.id) {
                 toast(`${name} added to inventories!`)
                 router.refresh()

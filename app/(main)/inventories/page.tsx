@@ -5,7 +5,7 @@ import {LuBox} from "react-icons/lu";
 import SearchInventoriesInput from "@/app/(main)/inventories/_components/SearchInventoriesInput";
 
 type TInventories = {
-    searchParams?: {name: string | undefined}
+    searchParams?: { name: string | undefined }
 }
 
 const Inventories = ({searchParams}: TInventories) => {
@@ -13,12 +13,12 @@ const Inventories = ({searchParams}: TInventories) => {
         <div className="p-4">
             <div className="flex items-center justify-between w-full mb-4">
                 <h1 className="text-lg font-bold flex gap-2 items-center">
-                    <LuBox />
+                    <LuBox/>
                     INVENTORIES
                 </h1>
                 <div className="flex items-center gap-2">
-                <SearchInventoriesInput />
-                <AddInventoriesDialog />
+                    <SearchInventoriesInput/>
+                    <AddInventoriesDialog/>
                 </div>
             </div>
 
