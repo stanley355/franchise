@@ -3,6 +3,7 @@ import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow} from "@/c
 import {LuBoxes} from "react-icons/lu";
 import {formatDateToIndonesian } from '@/lib/formatDateToIndonesian';
 import DeleteInventoriesDialog from "@/app/(main)/inventories/_components/DeleteInventoriesDialog";
+import InventoriesAmountInput from "@/app/(main)/inventories/_components/InventoriesAmountInput";
 
 type TInventoriesTableProps = {
    name?: string | undefined;
@@ -44,10 +45,12 @@ const InventoriesTable = async ({name}: TInventoriesTableProps) => {
                             <TableCell>{inventory.id}</TableCell>
                             <TableCell>{formatDateToIndonesian(inventory.created_at)}</TableCell>
                             <TableCell>{formatDateToIndonesian(inventory.updated_at)}</TableCell>
-                            <TableCell>{inventory.name}</TableCell>
+                            <TableCell className="capitalize">{inventory.name}</TableCell>
                             <TableCell>{inventory.size}</TableCell>
                             <TableCell>{inventory.color}</TableCell>
-                            <TableCell>{inventory.amount}</TableCell>
+                            <TableCell>
+                                <InventoriesAmountInput inventoryId={inventory.id} defaultAmount={inventory.amount} />
+                            </TableCell>
                             <TableCell>{inventory.unit}</TableCell>
                             <TableCell>
                                 <DeleteInventoriesDialog id={inventory.id} name={inventory.name} />
