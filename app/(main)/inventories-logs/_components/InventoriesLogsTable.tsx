@@ -25,7 +25,7 @@ const InventoriesLogsTable = async ({name}: TInventoriesLogsTableProps) => {
     }
 
     return (
-        <div className="h-[70vh] lg:h-[80vh] overflow-auto">
+        <div className="max-h-[70vh] lg:max-h-[80vh] overflow-auto">
             <Table>
                 <TableHeader>
                     <TableRow>
@@ -36,7 +36,6 @@ const InventoriesLogsTable = async ({name}: TInventoriesLogsTableProps) => {
                         <TableHead>Color</TableHead>
                         <TableHead>Amount</TableHead>
                         <TableHead>Unit</TableHead>
-                        <TableHead>Action</TableHead>
                     </TableRow>
                 </TableHeader>
                 <TableBody>
