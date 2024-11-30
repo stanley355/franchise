@@ -1,4 +1,4 @@
-import {LuBox, LuBoxes} from "react-icons/lu";
+import {LuBoxes} from "react-icons/lu";
 import SearchInventoriesInput from "@/app/(main)/inventories/_components/SearchInventoriesInput";
 import InventoriesLogsTable from "@/app/(main)/inventories-logs/_components/InventoriesLogsTable";
 
