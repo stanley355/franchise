@@ -26,4 +26,8 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/franchise:latest
           build-args: |
+            HOST=${{ secrets.HOST }}
+            SUPERTOKENS_API_URL=${{ secrets.SUPERTOKENS_API_URL }}
+            SUPERTOKENS_API_KEY=${{ secrets.SUPERTOKENS_API_KEY }}
+            API_URL=${{ secrets.API_URL }}
 
