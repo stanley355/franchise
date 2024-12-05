@@ -7,4 +7,5 @@ export type TInventories = {
     color: string | null;
     amount: number;
     unit: string | null;
+    brand: string;
 }

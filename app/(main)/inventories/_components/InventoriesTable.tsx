@@ -31,7 +31,8 @@ const InventoriesTable = async ({name}: TInventoriesTableProps) => {
                         <TableHead>ID</TableHead>
                         <TableHead>Created At</TableHead>
                         <TableHead>Updated At</TableHead>
-                        <TableHead>Name</TableHead>
+                        <TableHead>Brand</TableHead>
+                        <TableHead>Name & Description</TableHead>
                         <TableHead>Size</TableHead>
                         <TableHead>Color</TableHead>
                         <TableHead>Amount</TableHead>
@@ -45,6 +46,7 @@ const InventoriesTable = async ({name}: TInventoriesTableProps) => {
                             <TableCell>{inventory.id}</TableCell>
                             <TableCell>{formatDateToIndonesian(inventory.created_at)}</TableCell>
                             <TableCell>{formatDateToIndonesian(inventory.updated_at)}</TableCell>
+                            <TableCell className="capitalize">{inventory.brand}</TableCell>
                             <TableCell className="capitalize">{inventory.name}</TableCell>
                             <TableCell>{inventory.size}</TableCell>
                             <TableCell>{inventory.color}</TableCell>

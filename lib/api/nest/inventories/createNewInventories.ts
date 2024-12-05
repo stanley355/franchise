@@ -5,6 +5,7 @@ import {TInventories} from "@/lib/api/nest/inventories/TInventories";
 
 type TRequest = {
     name: string;
+    brand: string;
     size?: string;
     color?: string;
     amount: number;

@@ -21,17 +21,19 @@ const AddInventoriesForm = () => {
 
     const handleAction = async (formData: FormData) => {
         const name = formData.get("name") as string;
+        const brand = formData.get("brand") as string;
         const size = formData.get("size") as string;
         const color = formData.get("color") as string;
         const amount = formData.get("amount") as string;
         const unit = formData.get("unit") as string
         try {
             const createData = {
-                name: name.toLowerCase(),
-                size: size.toLowerCase(),
-                color: color.toLowerCase(),
+                brand,
+                name,
+                size,
+                color,
                 amount: Number(amount),
-                unit: unit.toLowerCase(),
+                unit,
             }
 
             const inventories = await createNewInventories(createData);
@@ -50,14 +52,16 @@ const AddInventoriesForm = () => {
     }
     return (
         <form action={handleAction}>
-            <Label>Name</Label>
-            <Input type="text" id="name" name="name" required className="mb-4"/>
+            <Label>Brand</Label>
+            <Input type="text" id="brand" name="brand" required className="mb-4" placeholder="Cth: Terry Palmer"/>
+            <Label>Name & Description</Label>
+            <Input type="text" id="name" name="name" required className="mb-4" placeholder="Cth: Handuk Muka"/>
             <Label>Size (optional)</Label>
-            <Input type="text" id="size" name="size" className="mb-4"/>
+            <Input type="text" id="size" name="size" className="mb-4" placeholder="S/M/L/XL"/>
             <Label>Color (optional)</Label>
             <Input type="text" id="color" name="color" className="mb-4"/>
             <Label>Amount (0.5 multiplier)</Label>
-            <Input type="number" step={0.5} min={0} id="amount" name="amount" required className="mb-4"/>
+            <Input type="number" step={0.5} min={0} id="amount" name="amount" required className="mb-4" placeholder="Cth: 12"/>
             <Label>Unit (optional)</Label>
             <Input type="text" id="unit" name="unit" className="mb-4" placeholder="Kosongkan jika satuan"/>
             <Button type="submit" className="w-full">

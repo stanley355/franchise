@@ -19,7 +19,7 @@ const AddInventoriesDialog = () => {
                         <Dialog.Title className="text-base font-semibold">
                             Add new inventory
                         </Dialog.Title>
-                        <Dialog.Close asChild>
+                        <Dialog.Close asChild className="cursor-pointer">
                                 <LuX className="text-2xl" />
                         </Dialog.Close>
                     </div>
