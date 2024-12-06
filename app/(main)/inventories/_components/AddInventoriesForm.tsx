@@ -10,6 +10,8 @@ import {useLoginStore} from "@/app/accounts/login/_stores/useLoginStore";
 import {useShallow} from "zustand/react/shallow";
 import {checkApiSessionExpired} from "@/lib/checkApiSessionExpired";
 import {useRouter} from "next/navigation";
+import AddInventoriesColorSelect from "@/app/(main)/inventories/_components/AddInventoriesColorSelect";
+import {useAddInventoriesStore} from "@/app/(main)/inventories/_stores/addInventoriesStore";
 
 const AddInventoriesForm = () => {
     const router = useRouter()
@@ -18,12 +20,17 @@ const AddInventoriesForm = () => {
             updateLoginStore: state.updateStore
         }))
     )
+    const { colors, updateStore} = useAddInventoriesStore(
+        useShallow((state) => ({
+            colors: state.colors,
+            updateStore: state.updateStore
+        }))
+    )
 
     const handleAction = async (formData: FormData) => {
         const name = formData.get("name") as string;
         const brand = formData.get("brand") as string;
         const size = formData.get("size") as string;
-        const color = formData.get("color") as string;
         const amount = formData.get("amount") as string;
         const unit = formData.get("unit") as string
         try {
@@ -31,16 +38,19 @@ const AddInventoriesForm = () => {
                 brand,
                 name,
                 size,
-                color,
+                color: colors,
                 amount: Number(amount),
                 unit,
             }
 
             const inventories = await createNewInventories(createData);
+            console.log(inventories)
             if (inventories.id) {
+                updateStore("colors", "")
                 toast(`${name} added to inventories!`)
                 router.refresh()
             } else if (checkApiSessionExpired(inventories)) {
+                updateStore("colors", "")
                 updateLoginStore("openSessionExpiredDialogue", true)
             } else {
                 toast("Something went wrong, please try again later.")
@@ -59,7 +69,7 @@ const AddInventoriesForm = () => {
             <Label>Size (optional)</Label>
             <Input type="text" id="size" name="size" className="mb-4" placeholder="S/M/L/XL"/>
             <Label>Color (optional)</Label>
-            <Input type="text" id="color" name="color" className="mb-4"/>
+            <AddInventoriesColorSelect />
             <Label>Amount (0.5 multiplier)</Label>
             <Input type="number" step={0.5} min={0} id="amount" name="amount" required className="mb-4" placeholder="Cth: 12"/>
             <Label>Unit (optional)</Label>
