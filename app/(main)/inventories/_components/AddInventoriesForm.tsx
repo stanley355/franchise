@@ -63,7 +63,7 @@ const AddInventoriesForm = () => {
         <form action={handleAction}>
             <Label>Brand</Label>
             <Input type="text" id="brand" name="brand" required className="mb-4" placeholder="Cth: Terry Palmer"/>
-            <Label>Name & Description</Label>
+            <Label>Item Name</Label>
             <Input type="text" id="name" name="name" required className="mb-4" placeholder="Cth: Handuk Muka"/>
             <Label>Size (optional)</Label>
             <Input type="text" id="size" name="size" className="mb-4" placeholder="S/M/L/XL"/>

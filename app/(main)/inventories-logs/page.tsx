@@ -1,5 +1,5 @@
 import {LuBoxes} from "react-icons/lu";
-import SearchInventoriesInput from "@/app/(main)/inventories/_components/SearchInventoriesInput";
+import InventoriesSearchInput from "@/app/(main)/inventories/_components/InventoriesSearchInput";
 import InventoriesLogsTable from "@/app/(main)/inventories-logs/_components/InventoriesLogsTable";
 
 type TInventoriesLogs = {
@@ -16,7 +16,7 @@ const InventoriesLogsPage = ({searchParams}: TInventoriesLogs) => {
                     INVENTORIES LOGS
                 </h1>
                 <div className="flex items-center gap-2">
-                    <SearchInventoriesInput/>
+                    <InventoriesSearchInput/>
                 </div>
             </div>
 

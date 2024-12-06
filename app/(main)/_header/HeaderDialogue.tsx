@@ -1,6 +1,4 @@
-'use client'
 import Link from "next/link";
-import {usePathname} from "next/navigation";
 import * as Dialog from "@radix-ui/react-dialog";
 import {LuMenu, LuX} from "react-icons/lu";
 
@@ -25,7 +23,7 @@ const HeaderDialogue = () => {
                             <LuX className="text-xl"/>
                         </Dialog.Close>
                     </div>
-
+                    <Dialog.Description />
                     {HEADER_MENU.map((menu) =>
                         <Dialog.Close asChild key={`header_dialogue_${menu.href}`} className="mb-2">
                             <Link

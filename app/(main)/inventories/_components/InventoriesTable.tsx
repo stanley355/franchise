@@ -29,10 +29,10 @@ const InventoriesTable = async ({name}: TInventoriesTableProps) => {
                 <TableHeader>
                     <TableRow>
                         <TableHead>ID</TableHead>
-                        <TableHead>Created At</TableHead>
-                        <TableHead>Updated At</TableHead>
+                        <TableHead>Created</TableHead>
+                        <TableHead>Updated</TableHead>
                         <TableHead>Brand</TableHead>
-                        <TableHead>Name & Description</TableHead>
+                        <TableHead>Item Name</TableHead>
                         <TableHead>Size</TableHead>
                         <TableHead>Color</TableHead>
                         <TableHead>Amount</TableHead>
