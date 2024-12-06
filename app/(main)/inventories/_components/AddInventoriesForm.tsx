@@ -44,7 +44,6 @@ const AddInventoriesForm = () => {
             }
 
             const inventories = await createNewInventories(createData);
-            console.log(inventories)
             if (inventories.id) {
                 updateStore("colors", "")
                 toast(`${name} added to inventories!`)
