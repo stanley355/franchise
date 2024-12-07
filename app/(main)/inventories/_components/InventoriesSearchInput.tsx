@@ -27,7 +27,7 @@ const InventoriesSearchInput = () => {
     return (
         <div className="flex items-center border rounded-md pl-2">
             <LuSearch className="text-xl" />
-            <Input type="text" placeholder="Search inventory" onChange={onSearch} className="border-none focus-visible:ring-0 focus-visible:ring-offset-0"/>
+            <Input type="text" placeholder="Search inventory name" onChange={onSearch} className="border-none focus-visible:ring-0 focus-visible:ring-offset-0"/>
         </div>
     )
 };

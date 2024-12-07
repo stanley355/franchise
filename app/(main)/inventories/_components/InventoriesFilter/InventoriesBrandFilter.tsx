@@ -1,5 +1,6 @@
 
 'use client'
+import {memo} from "react";
 import dynamic from "next/dynamic";
 import {findAllInventoriesBrands} from "@/lib/api/nest/inventories/findAllInventoriesBrands";
 import {useSuspenseQuery} from "@tanstack/react-query";
@@ -12,12 +13,12 @@ const InventoriesBrandFilter = () => {
         }})
 
     if (isFetching) {
-        return  <div className="w-full h-10 bg-slate-500 animate-pulse rounded-lg" />
+        return  <div className="w-full h-10 bg-slate-100 animate-pulse rounded-lg" />
     }
 
     return (
-       <Select options={data} name="brand" />
+       <Select options={data} name="brand" placeholder="Select brand" />
     )
 };
 
-export default InventoriesBrandFilter;
+export default memo(InventoriesBrandFilter);
