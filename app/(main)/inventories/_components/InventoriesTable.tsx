@@ -24,7 +24,6 @@ const InventoriesTable = async ({name}: TInventoriesTableProps) => {
     }
 
     return (
-        <div className="max-h-[80vh] overflow-auto">
             <Table>
                 <TableHeader>
                     <TableRow>
@@ -61,7 +60,6 @@ const InventoriesTable = async ({name}: TInventoriesTableProps) => {
                     )}
                 </TableBody>
             </Table>
-        </div>
     )
 };
 

@@ -7,12 +7,10 @@ type TMainLayout = {
 
 const MainLayout = ({ children }: TMainLayout) => {
     return (
-        <div className="bg-foreground p-4 h-screen overflow-hidden">
-            <div className="bg-background rounded-md h-full">
+        <div>
                 <Header />
                 {children}
                 <SessionExpiredDialog />
-            </div>
         </div>
     );
 };
