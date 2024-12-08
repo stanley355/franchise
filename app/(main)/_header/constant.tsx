@@ -1,4 +1,4 @@
-import {LuBox, LuBoxes, LuUserCircle2} from "react-icons/lu";
+import {LuBox, LuBoxes, LuUser} from "react-icons/lu";
 
 export const HEADER_MENU = [
     {
@@ -12,7 +12,7 @@ export const HEADER_MENU = [
         href: "/inventories-logs"
     },
     {
-        icon: <LuUserCircle2 />,
+        icon: <LuUser/>,
         title: "Account",
         href: "/accounts"
     }
