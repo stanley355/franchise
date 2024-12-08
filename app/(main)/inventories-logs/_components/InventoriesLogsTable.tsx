@@ -4,10 +4,10 @@ import {formatDateToIndonesian } from '@/lib/formatDateToIndonesian';
 import {findAllInventoriesLogs} from "@/lib/api/nest/inventories-logs/findAllInventoriesLogs";
 
 type TInventoriesLogsTableProps = {
-    name: string | undefined,
-    brand: string | undefined,
-    size: string | undefined,
-    color: string | undefined
+    name?: string | undefined,
+    brand?: string | undefined,
+    size?: string | undefined,
+    color?: string | undefined
 }
 
 const InventoriesLogsTable = async ({name, brand, size, color}: TInventoriesLogsTableProps) => {
