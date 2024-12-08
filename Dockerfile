@@ -12,11 +12,9 @@ ENV API_URL=$SUPERTOKENS_API_URL
 
 WORKDIR /app
 
-COPY package*.json ./
-RUN yarn
 COPY . .
+RUN yarn
 RUN yarn build
-
 
 FROM node:18-alpine as runner
 
