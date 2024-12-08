@@ -1,6 +1,6 @@
 'use client'
 import Link from "next/link";
-import {LuChevronLeft, LuLoader2} from "react-icons/lu";
+import {LuChevronLeft, LuLoader} from "react-icons/lu";
 import {useShallow} from "zustand/react/shallow";
 
 import {Label} from "@/components/ui/label";
@@ -55,7 +55,7 @@ const ChangePasswordForm = () => {
             <Label>New Password (Uppercase, lowercase, number, and symbol)</Label>
             <Input type="password" placeholder="New Password" className="mb-4" name="newPassword" required/>
             <Button type="submit" className="mb-4 w-full" disabled={isLoading}>
-                {isLoading ? <LuLoader2 className="animate-spin"/> : "Change"}
+                {isLoading ? <LuLoader className="animate-spin"/> : "Change"}
             </Button>
             <Link href="/accounts" className={buttonVariants({variant: "outline"})}>
                 <LuChevronLeft/>
