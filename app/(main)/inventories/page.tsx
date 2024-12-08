@@ -1,4 +1,3 @@
-import {Suspense} from "react";
 import InventoriesTable from "@/app/(main)/inventories/_components/InventoriesTable";
 import InventoriesHeader from "@/app/(main)/inventories/_components/InventoriesHeader";
 
