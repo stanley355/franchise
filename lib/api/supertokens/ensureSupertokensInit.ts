@@ -24,7 +24,6 @@ export const supertokensConfig: TypeInput =  {
 let initialized = false;
 export function ensureSuperTokensInit() {
     if (!initialized) {
-        console.log(supertokensConfig)
         SuperTokens.init(supertokensConfig);
         initialized = true;
     }

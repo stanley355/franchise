@@ -1,15 +1,14 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import {Button } from "@/components/ui/button";
 import {LuPlusCircle, LuX} from "react-icons/lu";
-import AddInventoriesForm from "@/app/(main)/inventories/_components/AddInventoriesForm";
+import AddInventoriesForm from "@/app/(main)/inventories/_components/InventoriesActions/AddInventoriesForm";
 
 const AddInventoriesDialog = () => {
     return (
         <Dialog.Root>
             <Dialog.Trigger asChild>
-                <Button variant="outline">
+                <Button variant="outline" size="icon">
                     <LuPlusCircle />
-                    Add new inventory
                 </Button>
             </Dialog.Trigger>
             <Dialog.Portal>

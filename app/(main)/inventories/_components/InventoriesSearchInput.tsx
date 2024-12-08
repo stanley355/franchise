@@ -17,7 +17,7 @@ const InventoriesSearchInput = () => {
         typingTimeoutRef.current = setTimeout(() => {
             const searchValue = e.target.value.toLowerCase().trim();
             const urlParams = new URLSearchParams(window.location.search);
-            urlParams.set("query", searchValue);
+            urlParams.set("name", searchValue);
             const newQueryString = urlParams.toString();
             const newPath = pathname + "?" + newQueryString;
             router.replace(newPath);
@@ -25,7 +25,7 @@ const InventoriesSearchInput = () => {
     };
 
     return (
-        <div className="flex items-center border rounded-md pl-2">
+        <div className="flex items-center border rounded-md pl-2 flex-1">
             <LuSearch className="text-xl" />
             <Input type="text" placeholder="Search inventory name" onChange={onSearch} className="border-none focus-visible:ring-0 focus-visible:ring-offset-0"/>
         </div>

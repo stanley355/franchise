@@ -7,10 +7,13 @@ import InventoriesAmountInput from "@/app/(main)/inventories/_components/Invento
 
 type TInventoriesTableProps = {
    name?: string | undefined;
+   brand?: string | undefined;
+   size?: string | undefined;
+   color?: string | undefined;
 }
 
-const InventoriesTable = async ({name}: TInventoriesTableProps) => {
-    const inventories = await findAllInventories(name)
+const InventoriesTable = async ({name, brand, size, color}: TInventoriesTableProps) => {
+    const inventories = await findAllInventories(name, brand, size, color);
 
     if (!inventories) {
         return <>Error</>

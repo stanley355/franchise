@@ -10,7 +10,7 @@ import {useLoginStore} from "@/app/accounts/login/_stores/useLoginStore";
 import {useShallow} from "zustand/react/shallow";
 import {checkApiSessionExpired} from "@/lib/checkApiSessionExpired";
 import {useRouter} from "next/navigation";
-import AddInventoriesColorSelect from "@/app/(main)/inventories/_components/AddInventoriesColorSelect";
+import AddInventoriesColorSelect from "@/app/(main)/inventories/_components/InventoriesActions/AddInventoriesColorSelect";
 import {useAddInventoriesStore} from "@/app/(main)/inventories/_stores/addInventoriesStore";
 
 const AddInventoriesForm = () => {
