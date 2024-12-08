@@ -3,7 +3,6 @@
 import {Label} from "@/components/ui/label";
 import {Input} from "@/components/ui/input";
 import {Button} from "@/components/ui/button";
-import {LuPlusCircle} from "react-icons/lu";
 import {toast} from "react-toastify";
 import {createNewInventories} from "@/lib/api/nest/inventories/createNewInventories";
 import {useLoginStore} from "@/app/accounts/login/_stores/useLoginStore";
@@ -43,13 +42,12 @@ const AddInventoriesForm = () => {
                 unit,
             }
 
+            updateStore("isLoading", true);
             const inventories = await createNewInventories(createData);
             if (inventories.id) {
-                updateStore("colors", "")
-                toast(`${name} added to inventories!`)
+                toast(`${name} ${brand} added to inventories!`)
                 router.refresh()
             } else if (checkApiSessionExpired(inventories)) {
-                updateStore("colors", "")
                 updateLoginStore("openSessionExpiredDialogue", true)
             } else {
                 toast("Something went wrong, please try again later.")
@@ -57,6 +55,10 @@ const AddInventoriesForm = () => {
         } catch (e: any) {
             console.error(e.message);
             toast("Something went wrong, please try again later.")
+        } finally {
+            updateStore("colors", "")
+            updateStore("isLoading", false);
+            updateStore("openDialog", false)
         }
     }
     return (
@@ -73,10 +75,14 @@ const AddInventoriesForm = () => {
             <Input type="number" step={0.5} min={0} id="amount" name="amount" required className="mb-4" placeholder="Cth: 12"/>
             <Label>Unit (optional)</Label>
             <Input type="text" id="unit" name="unit" className="mb-4" placeholder="Kosongkan jika satuan"/>
-            <Button type="submit" className="w-full">
-                <LuPlusCircle/>
-                Add
+            <div className="flex items-center justify-between gap-2">
+            <Button type="submit" className="w-full" variant="outline" onClick={()=> setTimeout(()=> updateStore("openDialog", true), 500)}>
+               Save & Add new
             </Button>
+            <Button type="submit" className="w-full">
+               Save
+            </Button>
+            </div>
         </form>
     )
 };
