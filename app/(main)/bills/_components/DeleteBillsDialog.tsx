@@ -2,18 +2,17 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import {Button} from "@/components/ui/button";
 import {toast} from "react-toastify";
-import {deleteInventories} from "@/lib/api/nest/inventories/deleteInventories";
 import {checkApiSessionExpired} from "@/lib/checkApiSessionExpired";
 import {useLoginStore} from "@/app/accounts/login/_stores/useLoginStore";
 import {useShallow} from "zustand/react/shallow";
+import {deleteBills} from "@/lib/api/nest/bills/deleteBills";
 import {useRouter} from "next/navigation";
 
-type TDeleteInventoriesDialog = {
+type TDeleteBillsDialog = {
     id: number;
-    name: string;
 }
 
-const DeleteInventoriesDialog = ({id, name}: TDeleteInventoriesDialog) => {
+const DeleteBillsDialog = ({id }: TDeleteBillsDialog) => {
     const router = useRouter();
     const {updateLoginStore} = useLoginStore(
         useShallow((state) => ({
@@ -23,10 +22,9 @@ const DeleteInventoriesDialog = ({id, name}: TDeleteInventoriesDialog) => {
 
     const onClick = async () => {
         try {
-            const inventories = await deleteInventories(id);
-
+            const inventories = await deleteBills(id);
             if (inventories) {
-                toast(`${name} delete from inventories!`)
+                toast(`Bill no. ${id} successfully deleted!`)
                 router.refresh()
             } else if (checkApiSessionExpired(inventories)) {
                 updateLoginStore("openSessionExpiredDialogue", true)
@@ -50,10 +48,10 @@ const DeleteInventoriesDialog = ({id, name}: TDeleteInventoriesDialog) => {
                 <Dialog.Overlay className="bg-popover-foreground/50 fixed inset-0" />
                 <Dialog.Content className="bg-popover fixed top-[50%] left-[50%] p-4 rounded-md -translate-x-1/2 -translate-y-1/2 w-80 md:w-96">
                         <Dialog.Title className="text-base font-semibold mb-2">
-                            Are you sure you want to delete {name} from inventory?
+                            Are you sure you want to delete bill no. {id}?
                         </Dialog.Title>
                         <Dialog.Description className="mb-4">
-                           This will also remove the related inventory logs
+                           This will also remove the related bill items
                         </Dialog.Description>
                         <div className="flex items-center gap-4 flex-col md:flex-row w-full">
                             <Dialog.Close asChild>
@@ -74,4 +72,4 @@ const DeleteInventoriesDialog = ({id, name}: TDeleteInventoriesDialog) => {
     )
 }
 
-export default DeleteInventoriesDialog
+export default DeleteBillsDialog

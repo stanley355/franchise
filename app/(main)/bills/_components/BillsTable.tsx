@@ -7,6 +7,7 @@ import Link from "next/link";
 import {buttonVariants} from "@/components/ui/button";
 import BillsFinalPriceInput from "@/app/(main)/bills/_components/BillsFinalPriceInput";
 import {formatCurrencyToIndonesian} from "@/lib/formatCurrencyToIndonesian";
+import DeleteBillsDialog from "@/app/(main)/bills/_components/DeleteBillsDialog";
 
 type TBillsTable = {
     id?: number
@@ -44,14 +45,18 @@ const BillsTable = async ({id}: TBillsTable) => {
                         <TableCell>{formatDateToIndonesian(bill.updated_at)}</TableCell>
                         <TableCell>{bill.item_count}</TableCell>
                         <TableCell>{formatCurrencyToIndonesian(bill.total_price)}</TableCell>
-                        <TableCell className="flex items-center gap-1">
+                        <TableCell>
+                            <div className='flex items-center gap-2'>
+
                             <span>Rp</span>
                             <BillsFinalPriceInput billsId={bill.id} defaultFinalPrice={bill.final_price} />
+                            </div>
                         </TableCell>
-                        <TableCell>
+                        <TableCell className="flex items-center gap-2">
                             <Link href={`/bills/${bill.id}`} className={buttonVariants()}>
                                 See items
                             </Link>
+                            <DeleteBillsDialog id={bill.id} />
                         </TableCell>
                     </TableRow>
                 )}
