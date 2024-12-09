@@ -1,8 +1,9 @@
 'use server'
 import {cookies} from "next/headers";
 import {API_URL} from "@/lib/api/constant";
+import {TBills} from "@/lib/api/nest/bills/TBills";
 
-export const findAllBills = async (): Promise<any[]> => {
+export const findAllBills = async (): Promise<TBills[]> => {
     const token = cookies().get('accessToken')?.value as string;
     const url = `${API_URL}/bills/findAll`;
 
