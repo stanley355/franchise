@@ -1,5 +1,5 @@
 
-const BillsTable = () => {
+const BillsTable = async () => {
     return (
         <div>
 

@@ -14,7 +14,12 @@ const Inventories = ({searchParams}: TInventories) => {
     return (
         <div className="p-4">
             <InventoriesHeader/>
-                <InventoriesTable name={searchParams?.name} brand={searchParams?.brand} size={searchParams?.size} color={searchParams?.color} />
+            <InventoriesTable
+                name={searchParams?.name}
+                brand={searchParams?.brand}
+                size={searchParams?.size}
+                color={searchParams?.color}
+            />
         </div>
     )
 };

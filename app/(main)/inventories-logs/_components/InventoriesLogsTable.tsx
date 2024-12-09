@@ -1,7 +1,9 @@
 import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow} from "@/components/ui/table";
-import {LuBoxes, LuMinus, LuPlus} from "react-icons/lu";
+import {LuMinus, LuPlus} from "react-icons/lu";
 import {formatDateToIndonesian } from '@/lib/formatDateToIndonesian';
 import {findAllInventoriesLogs} from "@/lib/api/nest/inventories-logs/findAllInventoriesLogs";
+import ErrorPage from "@/components/custom-ui/ErrorPage";
+import InventoriesNotFound from "@/app/(main)/inventories/_components/InventoriesNotFound";
 
 type TInventoriesLogsTableProps = {
     name?: string | undefined,
@@ -14,14 +16,11 @@ const InventoriesLogsTable = async ({name, brand, size, color}: TInventoriesLogs
     const inventoriesLogs = await findAllInventoriesLogs(name, brand, size, color)
 
     if (!inventoriesLogs) {
-        return <>Error</>
+        return <ErrorPage />
     }
 
     if (inventoriesLogs.length === 0) {
-        return <div className="w-full h-96 flex items-center justify-center flex-col gap-4">
-            <LuBoxes className="text-5xl" />
-            <div>{name ? `No inventory with "${name}" name found`: "Inventory is empty"}</div>
-        </div>
+        return <InventoriesNotFound />
     }
 
     return (

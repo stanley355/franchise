@@ -2,8 +2,12 @@ import {findAllInventories} from "@/lib/api/nest/inventories/findAllInventories"
 import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow} from "@/components/ui/table";
 import {LuBoxes} from "react-icons/lu";
 import {formatDateToIndonesian } from '@/lib/formatDateToIndonesian';
-import DeleteInventoriesDialog from "@/app/(main)/inventories/_components/DeleteInventoriesDialog";
+import DeleteInventoriesDialog from "@/app/(main)/inventories/_components/InventoriesActions/DeleteInventoriesDialog";
 import InventoriesAmountInput from "@/app/(main)/inventories/_components/InventoriesAmountInput";
+import ErrorPage from "@/components/custom-ui/ErrorPage";
+import InventoriesNotFound from "@/app/(main)/inventories/_components/InventoriesNotFound";
+import Link from "next/link";
+import {buttonVariants} from "@/components/ui/button";
 
 type TInventoriesTableProps = {
    name?: string | undefined;
@@ -16,14 +20,11 @@ const InventoriesTable = async ({name, brand, size, color}: TInventoriesTablePro
     const inventories = await findAllInventories(name, brand, size, color);
 
     if (!inventories) {
-        return <>Error</>
+        return <ErrorPage />
     }
 
     if (inventories.length === 0) {
-        return <div className="w-full h-96 flex items-center justify-center flex-col gap-4">
-            <LuBoxes className="text-5xl" />
-            <div>{name ? `No inventory with "${name}" name found`: "Inventory is empty"}</div>
-        </div>
+        return <InventoriesNotFound />
     }
 
     return (
@@ -56,7 +57,13 @@ const InventoriesTable = async ({name, brand, size, color}: TInventoriesTablePro
                                 <InventoriesAmountInput inventoryId={inventory.id} defaultAmount={inventory.amount} />
                             </TableCell>
                             <TableCell>{inventory.unit}</TableCell>
-                            <TableCell>
+                            <TableCell className="gap-2 flex items-center">
+                                <Link
+                                    href={`/inventories-logs?name=${inventory.name}&brand=${inventory.brand}`}
+                                      className={buttonVariants()}
+                                >
+                                    Logs
+                                </Link>
                                 <DeleteInventoriesDialog id={inventory.id} name={inventory.name} />
                             </TableCell>
                         </TableRow>
