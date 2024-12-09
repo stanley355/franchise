@@ -1,7 +1,7 @@
 'use client'
 import * as Dialog from "@radix-ui/react-dialog";
 import {Button } from "@/components/ui/button";
-import {LuPlusCircle, LuX} from "react-icons/lu";
+import {LuPlus, LuX} from "react-icons/lu";
 import AddInventoriesForm from "@/app/(main)/inventories/_components/InventoriesActions/AddInventoriesForm";
 import {useAddInventoriesStore} from "@/app/(main)/inventories/_stores/addInventoriesStore";
 import {useShallow} from "zustand/react/shallow";
@@ -17,7 +17,7 @@ const AddInventoriesDialog = () => {
         <Dialog.Root open={openDialog}>
             <Dialog.Trigger asChild onClick={()=> updateStore("openDialog", true)}>
                 <Button variant="outline" size="icon">
-                    <LuPlusCircle />
+                    <LuPlus />
                 </Button>
             </Dialog.Trigger>
             <Dialog.Portal>

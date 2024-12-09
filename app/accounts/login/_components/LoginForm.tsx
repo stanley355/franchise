@@ -1,6 +1,6 @@
 'use client'
 import {toast} from "react-toastify";
-import {LuLoader2} from "react-icons/lu";
+import {LuLoader} from "react-icons/lu";
 import {useShallow} from "zustand/react/shallow";
 import {useLoginStore} from "@/app/accounts/login/_stores/useLoginStore";
 
@@ -55,7 +55,7 @@ const LoginForm = () => {
            <Label htmlFor="password">Password</Label>
            <Input type="password" placeholder="Password" name="password" required className="mb-4" />
            <Button type="submit" className="w-full" disabled={isLoading}>
-               {isLoading ? <LuLoader2 className="animate-spin" /> : "Login"}
+               {isLoading ? <LuLoader className="animate-spin" /> : "Login"}
            </Button>
        </form>
    )

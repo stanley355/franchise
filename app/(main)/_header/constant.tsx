@@ -1,6 +1,11 @@
-import {LuBox, LuBoxes, LuUser} from "react-icons/lu";
+import {LuBox, LuBoxes, LuNotepadText, LuUser} from "react-icons/lu";
 
 export const HEADER_MENU = [
+    // {
+    //     icon: <LuNotepadText />,
+    //     title: 'Bills',
+    //     href:  '/bills',
+    // },
     {
         icon: <LuBox />,
         title: "Inventories",
