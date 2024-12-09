@@ -6,9 +6,14 @@ import {formatDateToIndonesian} from "@/lib/formatDateToIndonesian";
 import Link from "next/link";
 import {buttonVariants} from "@/components/ui/button";
 import BillsFinalPriceInput from "@/app/(main)/bills/_components/BillsFinalPriceInput";
+import {formatCurrencyToIndonesian} from "@/lib/formatCurrencyToIndonesian";
 
-const BillsTable = async () => {
-    const bills = await findAllBills();
+type TBillsTable = {
+    id?: number
+}
+
+const BillsTable = async ({id}: TBillsTable) => {
+    const bills = await findAllBills(id);
 
     if (!bills) {
         return <ErrorPage />
@@ -38,7 +43,7 @@ const BillsTable = async () => {
                         <TableCell>{formatDateToIndonesian(bill.created_at)}</TableCell>
                         <TableCell>{formatDateToIndonesian(bill.updated_at)}</TableCell>
                         <TableCell>{bill.item_count}</TableCell>
-                        <TableCell>Rp {bill.total_price}</TableCell>
+                        <TableCell>{formatCurrencyToIndonesian(bill.total_price)}</TableCell>
                         <TableCell className="flex items-center gap-1">
                             <span>Rp</span>
                             <BillsFinalPriceInput billsId={bill.id} defaultFinalPrice={bill.final_price} />

@@ -6,6 +6,7 @@ import {checkApiSessionExpired} from "@/lib/checkApiSessionExpired";
 import {useLoginStore} from "@/app/accounts/login/_stores/useLoginStore";
 import {useShallow} from "zustand/react/shallow";
 import {toast} from "react-toastify";
+import {updateBills} from "@/lib/api/nest/bills/updateBills";
 
 type TBillsFinalPriceInputProps = {
     billsId: number
@@ -26,16 +27,16 @@ const BillsFinalPriceInput= ({ billsId, defaultFinalPrice}: TBillsFinalPriceInpu
         }
 
         typingTimeoutRef.current = setTimeout(async () => {
-            const newAmount= Number(e.target.value);
-            // const inventories = await updateInventories(inventoryId, {amount: newAmount});
-            // if (!inventories) {
-            //     const isExpired = checkApiSessionExpired(inventories)
-            //     if (isExpired) {
-            //         updateLoginStore("openSessionExpiredDialogue", true)
-            //     } else {
-            //         toast("Something went wrong, please try again later.")
-            //     }
-            // }
+            const newFinalPrice= Number(e.target.value);
+            const bills = await updateBills(billsId, newFinalPrice);
+            if (!bills) {
+                const isExpired = checkApiSessionExpired(bills)
+                if (isExpired) {
+                    updateLoginStore("openSessionExpiredDialogue", true)
+                } else {
+                    toast("Something went wrong, please try again later.")
+                }
+            }
         }, 500);
     };
     return (

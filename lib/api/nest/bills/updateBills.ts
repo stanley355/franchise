@@ -1,25 +1,21 @@
 'use server'
 import {cookies} from "next/headers";
 import {API_URL} from "@/lib/api/constant";
-import {TBills} from "@/lib/api/nest/bills/TBills";
 
-export const findAllBills = async (id?: number): Promise<TBills[]> => {
+export const updateBills= async (id: number, final_price: number) =>{
     const token = cookies().get('accessToken')?.value as string;
-    let url = `${API_URL}/bills/findAll`;
-
-    if (id) {
-        url += `?id=${id}`;
-    }
+    const url = `${API_URL}/bills/${id}`;
 
     try {
         const fetchResponse = await fetch(url, {
-            method: "GET",
+            method: "PUT",
             headers: {
                 "Authorization": token,
                 "Content-Type": "application/json",
             },
+            body: JSON.stringify({final_price})
         })
-        return await fetchResponse.json();
+        return await  fetchResponse.json();
     } catch (error) {
         throw error;
     }
