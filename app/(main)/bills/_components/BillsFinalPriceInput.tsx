@@ -1,7 +1,6 @@
 'use client'
 import {Input} from "@/components/ui/input";
 import {ChangeEvent, useRef} from "react";
-import {updateInventories} from "@/lib/api/nest/inventories/updateInventories";
 import {checkApiSessionExpired} from "@/lib/checkApiSessionExpired";
 import {useLoginStore} from "@/app/accounts/login/_stores/useLoginStore";
 import {useShallow} from "zustand/react/shallow";

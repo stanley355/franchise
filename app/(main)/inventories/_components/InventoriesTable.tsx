@@ -1,6 +1,5 @@
 import {findAllInventories} from "@/lib/api/nest/inventories/findAllInventories";
 import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow} from "@/components/ui/table";
-import {LuBoxes} from "react-icons/lu";
 import {formatDateToIndonesian } from '@/lib/formatDateToIndonesian';
 import DeleteInventoriesDialog from "@/app/(main)/inventories/_components/InventoriesActions/DeleteInventoriesDialog";
 import InventoriesAmountInput from "@/app/(main)/inventories/_components/InventoriesAmountInput";
